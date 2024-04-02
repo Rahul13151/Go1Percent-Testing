@@ -15,8 +15,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 21
-      - name: Set up Chrome
-        uses: actions/setup-chrome@v4
       - name: Install ChromeDriver
         run: npm install chromedriver --save-dev
 
