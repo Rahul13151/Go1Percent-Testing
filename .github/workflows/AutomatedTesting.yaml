@@ -15,7 +15,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 21
+      - name: Set up Chrome
+        uses: actions/setup-chrome@v2
+      - name: Install ChromeDriver
+        run: npm install chromedriver --save-dev
+
+
       - name: Test execution
         run: |
           npm install
-          # npx nightwatch
+          npx nightwatch
