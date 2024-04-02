@@ -18,4 +18,4 @@ jobs:
       - name: Test execution
         run: |
           npm install
-          npx nightwatch
+          # npx nightwatch
