@@ -1,0 +1,21 @@
+name: Go 1% Testing Workflow
+on:
+  push:
+    branches: ["main","feature/tests"]
+  workflow_dispatch:
+jobs:
+  Run_Tests:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout Code adn Respository
+        uses: actions/checkout@v4
+        with:
+          cache: 'npm'
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 21
+      - name: Test execution
+        run: |
+          npm install
+          npx nightwatch
