@@ -23,9 +23,6 @@ module.exports = {
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
   custom_commands_path: ['customs/commands/'],
 
-  // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
-  custom_assertions_path: 'customs/assertions',
-
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
   plugins: [],
   
