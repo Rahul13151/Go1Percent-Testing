@@ -15,11 +15,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 21
-      - name: Install ChromeDriver
-        run: npm install chromedriver --save-dev
-
-
-      - name: Test execution
+      - name: npm-install
         run: |
-          npm install
-          npx nightwatch
+          npm ci
+      - name: xvfb-install
+        run: sudo apt-get install xvfb
+      - name: Run Tests
+        run: xvfb-run --auto-servernum npm test -- --env chrome
+      # - name: Install ChromeDriver
+      #   run: npm install chromedriver --save-dev
+
+
+      # - name: Test execution
+      #   run: |
+      #     npm install
+      #     npx nightwatch
