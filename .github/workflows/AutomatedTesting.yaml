@@ -15,18 +15,28 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 21
-      - name: npm-install
-        run: |
-          npm ci
-      - name: xvfb-install
-        run: sudo apt-get install xvfb
-      - name: Run Tests
-        run: xvfb-run --auto-servernum npm test -- --env chrome
-      # - name: Install ChromeDriver
-      #   run: npm install chromedriver --save-dev
-
-
-      # - name: Test execution
+      # - name: npm-install
       #   run: |
-      #     npm install
-      #     npx nightwatch
+      #     npm ci
+      # - name: xvfb-install
+      #   run: sudo apt-get install xvfb
+      # - name: Run Tests
+      #   run: xvfb-run --auto-servernum npm test -- --env chrome
+
+      - uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: 123
+      - uses: actions/checkout@v2
+      - uses: nanasess/setup-chromedriver@v4
+        # with:
+          # Optional: do not specify to match Chrome's version
+          # chromedriver-version: '88.0.4324.96'
+      - run: |
+          export DISPLAY=:99
+          chromedriver --url-base=/wd/hub &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
+
+      - name: Test execution
+        run: |
+          npm install
+          npx nightwatch
