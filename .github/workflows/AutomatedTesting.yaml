@@ -28,8 +28,15 @@ jobs:
       #     chrome-version: 123
       - name: Install Google Chrome
         uses: browser-actions/setup-chrome@latest
-      - uses: actions/checkout@v2
-      - uses: nanasess/setup-chromedriver@v2
+      - name: Install ChromeDriver
+        run: |
+          LATEST=$(wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+          wget http://chromedriver.storage.googleapis.com/$LATEST/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          chmod +x chromedriver
+          sudo mv chromedriver /usr/local/bin/
+      # - uses: actions/checkout@v2
+      # - uses: nanasess/setup-chromedriver@v2
         # with:
           # Optional: do not specify to match Chrome's version
           # chromedriver-version: '88.0.4324.96'
