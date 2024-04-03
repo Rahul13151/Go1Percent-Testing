@@ -23,9 +23,11 @@ jobs:
       # - name: Run Tests
       #   run: xvfb-run --auto-servernum npm test -- --env chrome
 
-      - uses: browser-actions/setup-chrome@v2
-        with:
-          chrome-version: 123
+      # - uses: browser-actions/setup-chrome@v2
+      #   with:
+      #     chrome-version: 123
+      - name: Install Google Chrome
+        uses: browser-actions/setup-chrome@latest
       - uses: actions/checkout@v2
       - uses: nanasess/setup-chromedriver@v2
         # with:
